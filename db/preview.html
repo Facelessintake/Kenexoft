@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPLOAD LOGS</title>
+    <form action="log_upload_handler.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="plan" id="selectedPlan" value="Essential">
+        <div class="features-container"></div>
+        <div class="actions">
+            <input class="primary" type="submit" value="Next">
+        </div>
+    </form>
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            color: #000;
+            overflow-y: auto;
+        }
+
+        .upload-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .upload-container h2 {
+            margin-bottom: 20px;
+            color: #E5450B;
+            font-size: 20px;
+        }
+
+        .plans-section {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .plan {
+            background-color: #fafafa;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 150px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .plan:hover {
+            border-color: #E5450B;
+            transform: scale(1.05);
+        }
+
+        .plan.selected {
+            border-color: #E5450B;
+            background-color: #fff5f0;
+        }
+
+        .feature-row {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+        }
+
+        input[type="file"]:disabled {
+            background-color: #e9e9e9;
+            cursor: not-allowed;
+        }
+
+        textarea {
+            width: 85%;
+            margin-top: 10px;
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="upload-container">
+        <h2>UPLOAD LOGS</h2>
+        <div class="plans-section">
+            <div class="plan" id="Essential">Essential</div>
+            <div class="plan" id="Standard">Standard</div>
+            <div class="plan" id="Premium">Premium</div>
+        </div>
+
+        <form action="log_upload_handler.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="plan" id="selectedPlan" value="Essential">
+
+            <div class="features-container">
+                <!-- Features dynamically added here -->
+            </div>
+
+            <div class="actions">
+                <button class="secondary" type="button">Back</button>
+                <input class="primary" type="submit" value="Next">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const planLimits = {
+            Essential: 3,
+            Standard: 5,
+            Premium: 8
+        };
+
+        const features = [
+            "Firewall Logs",
+            "DNS Query Logs",
+            "User Activity Logs",
+            "Network Traffic Logs",
+            "Email Security Logs",
+            "Application Logs",
+            "Endpoint Security Logs",
+            "SIEM Systems Aggregated Logs"
+        ];
+
+        const plans = document.querySelectorAll('.plan');
+        const featuresContainer = document.querySelector('.features-container');
+        const selectedPlanInput = document.getElementById('selectedPlan');
+
+        function updateFeatures(plan) {
+            featuresContainer.innerHTML = '';
+            const maxFeatures = planLimits[plan];
+
+            features.forEach((feature, index) => {
+                const featureRow = document.createElement('div');
+                featureRow.classList.add('feature-row');
+
+                const isDisabled = index >= maxFeatures;
+                featureRow.innerHTML = `
+                    <div class="feature-header">
+                        <label class="feature-checkbox">
+                            <input type="file" name="logFile${index}" ${isDisabled ? 'disabled' : ''}>
+                            ${feature}
+                        </label>
+                    </div>
+                `;
+                featuresContainer.appendChild(featureRow);
+            });
+        }
+
+        plans.forEach(plan => {
+            plan.addEventListener('click', () => {
+                plans.forEach(p => p.classList.remove('selected'));
+                plan.classList.add('selected');
+                selectedPlanInput.value = plan.id;
+                updateFeatures(plan.id);
+            });
+        });
+
+        // Initialize with Essential plan
+        updateFeatures('Essential');
+    </script>
+</body>
+
+</html>
