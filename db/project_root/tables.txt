@@ -1,0 +1,54 @@
+-- Create UserDetails table
+CREATE TABLE UserDetails (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    CountryCode VARCHAR(5),
+    AreaCode VARCHAR(5),
+    PhoneNumber VARCHAR(15),
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Username VARCHAR(50) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    CompanyName VARCHAR(100),
+    Address TEXT,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create Plan table
+CREATE TABLE Plan (
+    PlanID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    PlanName VARCHAR(50) NOT NULL,
+    BillingCycle VARCHAR(10) NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL,
+    Status VARCHAR(20) NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES UserDetails(UserID)
+);
+
+-- Create UploadLogs table
+CREATE TABLE UploadLogs (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    LogType VARCHAR(50) NOT NULL,
+    filedata VARCHAR(100) NOT NULL,
+    TimeStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES UserDetails(UserID)
+);
+
+
+
+CREATE TABLE user_profiles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50),
+    middle_name VARCHAR(50),
+    last_name VARCHAR(50),
+    mobile_number VARCHAR(15),
+    email VARCHAR(100) UNIQUE,
+    company_name VARCHAR(100),
+    company_email VARCHAR(100),
+    address_line1 VARCHAR(255),
+    address_line2 VARCHAR(255),
+    city VARCHAR(50),
+    state VARCHAR(50)
+);
