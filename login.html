@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+     -->
+   
+</head>
+<body>
+
+    <div class="login-container">
+        <img src="Knxt_Shield_Logo_003C_T.png"
+            alt="Company Logo" class="logo">
+        <h2>LOGIN</h2>
+        <form action="/submit-login" method="post">
+            <div class="input-group"> <i class="fa-solid fa-person"></i> <input type="text" name="userid" placeholder="User ID" required>
+             <i class="fa-solid fa-lock"></i><input type="password" name="password" placeholder="Password" required></div>
+            <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember Me</label>
+            </div>
+            <button type="submit">Submit</button>
+            <a href="forgotpassword.html">Forgot Password?</a>
+            <div class="signup">
+            <p><i>Not yet registered ?</i> <a href="/"><b>SIGN UP HERE</b></a></p>
+        </div>
+        </form>
+    </div>
+</body>
+
+
+</html>

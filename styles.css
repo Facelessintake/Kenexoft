@@ -1,0 +1,111 @@
+
+/* CSS for Kenexoft Plans */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.plans-wrapper {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px;
+    scroll-snap-type: x mandatory;
+}
+.logo {
+    width: 400px;
+    height: 100px; /* Example fixed height */
+}
+
+
+.plan-card {
+    flex: 0 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: left;
+    scroll-snap-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.plan-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.plan-card p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-card li {
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+.info {
+    cursor: help;
+    border-bottom: 1px dotted #333;
+}
+
+.register-button {
+    display: block;
+    margin: 30px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .plan-card {
+        width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .plan-card {
+        width: 200px;
+    }
+}
